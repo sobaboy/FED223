@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS01, 자바스크립트 기본 + DOM선택법</title>
+    <!-- JS 코딩구역 -->
+    <script>
+        //한줄주석
+        /* 여러줄 주석 */
+
+        /********************************************************** 
+        [자바스크립트란 ?]
+        -고정적인 html
+        
+        // 화면출력1
+        //    document.write('<h1>나는 FED개발자다!</h1');
+        //     alert("그러냐?");
+        // console.log('여기가 설마 콘솔mode?'); 
+        **********************************************************/
+
+        /* 
+        
+        */
+        function 보여줘() {
+            console.log("나야나!");
+         ///////////////////////보여줘 함수///////////////////////////   
+        ///////////////////////////////////////////////////////////////
+        document
+        .getElementById('name')
+        .innerHTML = '<img src="images/kim.png" alt="김비서가 왜 그럴까">';
+    }
+    </script>
+    <style>
+        .pbox {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 2vw;
+            line-height: 8vw;
+            width: 35vw;
+            border: 4px solid purple;
+            padding: 10vw 5vw;
+            color: yellow;
+            text-shadow:
+                1px 0 #000,
+                -1px 0 #000,
+                0 1px #000,
+                0 -1px #000;
+            /* 줄바꿈방지 */
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .pbox span img {
+            width: 30%;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 드라마 소개 box 만들기 -->
+    <p class="pbox" title="여기를 클릭하세용!" onclick="보여줘()">
+        나는 요즘 매일 생각한다! <br>
+        도대체!!!! <span id="name"></span>
+    </p>
+</body>
+
+</html>
