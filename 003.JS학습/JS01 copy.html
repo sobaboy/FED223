@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS01. 자바스크립트 기본 + DOM선택법</title>
+    <script>
+        function 보여줘() {
+            console.log("나야나!");
+            document
+            .getElementById('name')
+            .innerHTML = '<img src="images/kim.png" alt="김비서가 왜그럴까?">';
+            var 목표 = document.getElementsByClassName('pbox').item(0);
+            목표.style.color = "lime";
+            목표.style.fontSize = "3vw";
+            목표.style.transition =
+                "2s,transform 1s 2s,top 3s 2s,left 3s 2s";
+            목표.style.background = 'url(./images/kimbs.jpg) no-repeat top/cover';
+            목표.style.borderRadius = "50%";
+            목표.style.top = "50%";
+            목표.style.left = "50%";
+            목표.style.transform =
+                "translate(-50%,-50%) rotate(360deg) scale(.7)";
+            var 바디 = document.body;
+            바디.style.backgroundColor = "lightgreen";
+            바디.style.transition = "5s 3s";
+        }
+        function 맘대로해라(헐) {
+            console.log("맘대로해라!", 헐);
+            var 멍청이 =
+            document.querySelectorAll(".박스야 .원이야");
+            console.log("개수:", 멍청이.length);
+            console.log("멍청이:", 멍청이);
+            멍청이[헐].style.transition = '1s ease-out';
+            멍청이[헐].style.top = '50%';
+            멍청이[헐].style.right = '50%';
+            멍청이[헐].style.transform = 'translate(50%,-50%)';
+        }
+        function 사각사각() {
+            console.log('사각사각!');
+            var 나야나 = document.querySelector('.넌뭐냐');
+            console.log("나야나, 넌 뭐냐?", 나야나);
+            나야나.style.top = '0';
+            나야나.style.borderRadius = '0';
+            나야나.style.width = '100vw';
+            나야나.style.height = '100vh';
+            나야나.style.transition = '3s 1s,top 1s 0s';
+            나야나.innerText = 'JS입문을 환영합니다!';
+            나야나.style.fontSize = '6vw';
+            나야나.style.color = 'lime';
+            나야나.style.fontWeight = 'bold';
+            나야나.style.textShadow = '5px 5px 3px #000';
+            나야나.style.lineHeight = '100vh';
+        }
+    </script>
+    <style>
+        .pbox {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 2vw;
+            line-height: 8vw;
+            width: 35vw;
+            border: 4px solid purple;
+            padding: 10vw 5vw;
+            color: yellow;
+            text-shadow:
+                1px 0 #000,
+                -1px 0 #000,
+                0 1px #000,
+                0 -1px #000;
+            white-space: nowrap;
+            text-align: center;
+        }
+        .pbox span img {
+            width: 30%;
+            vertical-align: middle;
+        }
+        .원이야 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .원이야:nth-child(1) {
+            right: 400px;
+            background-image: url(./images/01.png);
+        }
+
+        .원이야:nth-child(2) {
+            right: 200px;
+            background-image: url(./images/02.png);
+        }
+
+        .원이야:nth-child(3) {
+            background-image: url(./images/03.png);
+        }
+
+        .넌뭐냐 {
+            position: absolute;
+            top: 40%;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            white-space: nowrap;
+            border-radius: 50%;
+            background: #bbd3b3 url(./images/prog.jpg) no-repeat center/auto 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 드라마 소개박스 -->
+    <p class="pbox" title="여기를 클릭하세요!" onclick="보여줘()">
+        나는 요즘 매일 생각한다! <br>
+        도대체 <span id="name"></span>
+    </p>
+    <!-- 원모양 박스 -->
+    <div class="박스야">
+        <!-- 원모양 -->
+        <div class="원이야" onmouseover="맘대로해라(0)"></div>
+        <div class="원이야" onmouseover="맘대로해라(1)"></div>
+        <div class="원이야" onmouseover="맘대로해라(2)"></div>
+        <!-- 사각형으로 변할 원박스 -->
+        <div class="넌뭐냐" ondblclick="사각사각()" title="반드시 더블클릭 해주세요~!!!"></div>
+    </div>
+</body>
+</html>
