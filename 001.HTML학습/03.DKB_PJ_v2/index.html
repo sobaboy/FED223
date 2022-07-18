@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- 모바일 뷰포트 필수! -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- meta:description 사이트 설명
     (구글검색엔진은 이것만 수집함) -->
     <meta name="description"
@@ -13,6 +15,7 @@
     <title>쓸쓸하고 찬란하신(神) 도깨비 v2</title>
     <!-- 메인페이지 외부 CSS만 호출함(공통CSS는 import됨) -->
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/media.css">
     <style>
 
     </style>
@@ -134,6 +137,9 @@
                     </li>
                 </ul>
             </nav>
+
+            <!-- 햄버거버튼 -->
+            <button class="ham" onclick="document.querySelector('.top').classList.toggle('on')"></button>
         </header>
     </div>
     <!-- 2. 메인영역 -->
@@ -141,7 +147,7 @@
         <!-- .ibx적용하지 않음! -->
         <main class="cont">
             <!-- 캐릭터박스 -->
-            <div class="cbx">
+            <div class="cbx fbx fxw">
                 <!-- 1. 공유 -->
                 <div class="cat">
                     <!-- 캐릭터 이미지박스 -->
