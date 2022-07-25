@@ -18,6 +18,26 @@ body {
    /* 로고이미지 가로위치 10%, 세로위치 30%, 
    가로크기 10% 세로크기 auto(생략) */
 }
+/* body의 가상요소로 인트로 애니 동안 화면 가림막 만들기 */
+body::after{
+   content: '';
+   display: block;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   z-index: 99999;
+   /* background-color: red; */
+   animation: delCover .1s 6s forwards;
+}
+/* 가림막 사라지기 애니 키프레임 */
+@keyframes delCover {
+   to{
+      height: 0;
+
+   }
+} /* 키프레임 */
 
 /* 메인영역 */
 .cont {
@@ -53,11 +73,48 @@ body {
    clear: both;
 }
 
+/* 드라마 문구 이미지 박스*/
+.dtxt {
+   position: absolute;
+   top: 20vh;
+   right: 0vw;
+   /* 부모는? */
+   width: 400px;
+   height: 400px;
+   overflow: hidden;
+   z-index: -1;
+}
+
+/* 드라마 문구 이미지 */
+#dtxt {
+   position: absolute;
+   /* 부모는 .dtxt */
+   top: 50%;
+   left: 50%;
+   /* 부모는? */
+   width: 300px;
+   /* 투명도 */
+   opacity: 0;
+   animation: dtxtAni 4s ease-in-out forwards;
+}
+
+
+/* 드라마 텍스트 키프레임 */
+@keyframes dtxtAni {
+   to {
+      top: 0;
+      left: 0;
+      opacity: 1;
+   }
+}
+
+/* 키프레임 */
+
 /* 캐릭터 개별박스 공통 */
 .cat {
    position: relative;
    /* 부모자격 */
-
+   /* z-index: -1; */
    /* 가로크기 : 4등분(25%) - 양쪽마진(1%) = 24% */
    width: 24%;
    /* 양쪽마진 : 위아래0 양쪽0.5% */
@@ -72,28 +129,49 @@ body {
    /* 영역보정값(자식요소 마진변동에 의한
    불일치 부분을 값으로 보정함) */
    padding-bottom: 10px;
+   transform: translateY(-600%);
+   animation: catAni 2s ease-out 1s forwards;
+}
 
+.cat:nth-child(2) {
+   animation-delay: 1.5s;
+}
+
+.cat:nth-child(3) {
+   animation-delay: 2s;
+}
+
+.cat:nth-child(4) {
+   animation-delay: 2.5s;
+}
+
+@keyframes catAni {
+   to {
+      transform: translateY(0%);
+   }
 }
 
 /* 캐릭터 이미지박스 */
-.ci{
+.ci {
    position: relative;
    /* 부모자격 .ci span */
    /* 트랜지션: 속시이지 */
    transition: .4s ease-in-out;
 }
+
 /* .cat에 오버시 .ci변경 */
-.cat:hover .ci{
+.cat:hover .ci {
    margin-top: -53%;
 }
 
 /* 캐릭터 이미지 
 - .ci의 직계자식 img만 선택! */
-.ci > img {
+.ci>img {
    width: 100%;
 }
+
 /* 캐릭터 이름이미지 박스 span */
-.ci span{
+.ci span {
    position: absolute;
    bottom: 4%;
    width: 100%;
@@ -102,7 +180,7 @@ body {
    /* 원래 inline이지만 출신변경! */
    text-align: center;
    /* 블록요소 내부의 인라인 컨텐츠를 중앙에 오게함! */
-   
+
    /* 마진탑으로 위치이동하기 X -> 포지션으로 변경! */
    /* margin-top: -20%; */
    /* 
@@ -116,24 +194,27 @@ body {
 }
 
 /* 캐릭터 이름 이미지 */
-.ci span img{
+.ci span img {
    width: 40%;
 }
+
 /* 캐릭터 이름 이미지 첫번째 숨김! */
-.ci span img:first-child{
+.ci span img:first-child {
    display: none;
 }
+
 /* 캐릭터 이름 이미지 첫번째 .cat에 오버시 보이기 */
-.cat:hover .ci span img:first-child{
+.cat:hover .ci span img:first-child {
    display: inline;
 }
+
 /* 캐릭터 이름 이미지 두번째 .cat에 오버시 숨기기 */
-.cat:hover .ci span img:last-child{
+.cat:hover .ci span img:last-child {
    display: none;
 }
 
 /* 캐릭터 설명박스 */
-.cd{
+.cd {
    position: absolute;
    /* 높이값 설정 : 
    0 -> 250px 오버시변경 */
@@ -148,8 +229,9 @@ body {
    /* 트랜지션: 속성 시간 이징 지연 */
    transition: height 0.4s ease-out;
 }
+
 /* .cat 개별박스에 오버시 .cd 보이기 */
-.cat:hover .cd{
+.cat:hover .cd {
    height: 250px;
 }
 
@@ -198,9 +280,9 @@ body {
 **********************************************/
 
 /* 캐릭터 설명 타이틀 */
-.cd h3{
+.cd h3 {
    font-family: 'Single Day', cursive;
-   font-size: min(1.9vw,26px);
+   font-size: min(1.9vw, 26px);
    /* 최대글자크기 26px, 이하는 유동적 */
    font-weight: normal;
    padding: 15px 10px 5px;
@@ -210,7 +292,7 @@ body {
 }
 
 /* 가상요소로 설명타이틀 앞에 도깨비아이콘 넣기 */
-.cd h3::before{
+.cd h3::before {
    content: '';
    display: inline-block;
    width: 18px;
@@ -221,9 +303,9 @@ body {
 }
 
 /* 캐릭터 설명 문단 */
-.cd p{
+.cd p {
    font-family: 'Yeon Sung', 'ZCOOL QingKe HuangYou';
-   font-size: min(1.1vw,16px);
+   font-size: min(1.1vw, 16px);
    /* 최대글자크기 16px, 이하는 유동적 */
    line-height: 1.7;
    padding: 10px;
@@ -232,12 +314,12 @@ body {
 
 /* 캐릭터 설명 첫번째 p요소의 첫번째 글자
 가상요소로 변경하기! */
-.cd p:first-of-type::first-letter{
+.cd p:first-of-type::first-letter {
    font-size: 35px;
    color: cyan;
    /* 글자그림자로 테두리 만들기
    그림자 4개를 각방향으로 1px밀기 */
-   text-shadow: 
-   1px 0 #000,-1px 0 #000,
-   0 1px #000,0 -1px #000;
+   text-shadow:
+      1px 0 #000, -1px 0 #000,
+      0 1px #000, 0 -1px #000;
 }
